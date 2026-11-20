@@ -1,5 +1,10 @@
 # Broker Abuse & Fraud Detection Engine (MT5 Risk Analytics)
 
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
+![Microsoft Excel](https://img.shields.io/badge/Microsoft_Excel-217346?style=for-the-badge&logo=microsoft-excel&logoColor=white)
+![MT5 Risk Analytics](https://img.shields.io/badge/Domain-MT5_Risk_Analytics-0A66C2?style=for-the-badge)
+
 An end-to-end FinTech Risk & Fraud Analytics pipeline built with **Python, PostgreSQL, and Excel** to simulate MetaTrader 5 (MT5) retail trading logs, detect **IB Churning / Bonus Abuse** and **Wash Trading**, and visualize high-risk accounts in an interactive dashboard.
 
 ---
