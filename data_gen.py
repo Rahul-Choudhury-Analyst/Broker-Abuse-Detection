@@ -33,8 +33,12 @@ df['Duration_Minutes'] = np.round((df['Close_Time'] - df['Open_Time']).dt.total_
 # 🚨 INJECT FRAUD: "IB Churning" Pattern
 # Make 15% of the trades close in under 2 minutes with near-zero PnL just to generate commission
 fraud_indices = df.sample(frac=0.15).index
-df.loc[fraud_indices, 'Duration_Minutes'] = np.round(np.random.uniform(0.5, 2.0, len(fraud_indices)), 2)
-df.loc[fraud_indices, 'Close_Time'] = df.loc[fraud_indices, 'Open_Time'] + pd.to_timedelta(df.loc[fraud_indices, 'Duration_Minutes'], unit='m')
+
+# FIXED: Using integer SECONDS instead of float minutes to avoid Pandas time format clashes
+fraud_seconds = np.random.randint(30, 120, len(fraud_indices)) 
+df.loc[fraud_indices, 'Duration_Minutes'] = np.round(fraud_seconds / 60, 2)
+df.loc[fraud_indices, 'Close_Time'] = df.loc[fraud_indices, 'Open_Time'] + pd.to_timedelta(fraud_seconds, unit='s')
+
 df.loc[fraud_indices, 'Profit_Loss'] = np.round(np.random.uniform(-5, 5, len(fraud_indices)), 2) 
 
 # Save to CSV for our SQL Engine later
@@ -45,4 +49,4 @@ print("Data saved successfully to mt5_mock_data.csv!")
 print("Running Sweetviz Data X-Ray...")
 report = sv.analyze(df)
 report.show_html("Broker_Abuse_Report.html")
-print("Report generated! Check your folder.")
+print("Report generated! Check your browser.")
