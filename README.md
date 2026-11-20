@@ -27,6 +27,12 @@ Uses `GROUP BY` and `HAVING COUNT(DISTINCT type) = 2` to catch accounts executin
 ![SQL Wash Trading Query](screenshots/sql_wash_trading.png)
 
 ---
+---
+
+## Key Findings & Business Impact
+* **Wash Trading Clusters:** Isolated **7 high-risk wash trading clusters** executing opposing `Buy`/`Sell` positions on identical symbols to artificially inflate volume.
+* **Repeat Offenders Flagged:** Pinpointed repeat offender **`CID0020`** across multiple trading pairs and top IB churner **`CID0049`**, who generated **33.86 lots** while maintaining a near-zero net PnL (**-$4.93**).
+* **Operational Efficiency:** Automated SQL anomaly rules and interactive Excel triage (`XLOOKUP`/`FILTER`) replace manual MT5 log reviews, saving an estimated **15–20 compliance hours per week**.
 
 ## Visualizations & Reporting
 
